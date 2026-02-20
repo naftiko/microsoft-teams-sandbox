@@ -1,0 +1,86 @@
+info:
+  name: List shifts in a schedule
+  type: http
+  seq: 1
+  tags:
+    - Shifts
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/schedule/shifts"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/shifts"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "shift-001",
+                "userId": "user-001",
+                "sharedShift": {
+                  "displayName": "Morning Shift",
+                  "startDateTime": "2025-01-22T08:00:00Z",
+                  "endDateTime": "2025-01-22T16:00:00Z",
+                  "theme": "blue"
+                }
+              },
+              {
+                "id": "shift-002",
+                "userId": "user-002",
+                "sharedShift": {
+                  "displayName": "Evening Shift",
+                  "startDateTime": "2025-01-22T16:00:00Z",
+                  "endDateTime": "2025-01-23T00:00:00Z",
+                  "theme": "purple"
+                }
+              }
+            ]
+          }

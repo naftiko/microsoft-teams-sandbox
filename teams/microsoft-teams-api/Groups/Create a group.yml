@@ -1,0 +1,70 @@
+info:
+  name: Create a group
+  type: http
+  seq: 2
+  tags:
+    - Groups
+
+http:
+  method: POST
+  url: "{{baseUrl}}/groups"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "mailEnabled": false,
+        "mailNickname": "",
+        "securityEnabled": false,
+        "groupTypes": [],
+        "visibility": "Private"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/groups"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "mailEnabled": false,
+            "mailNickname": "",
+            "securityEnabled": false,
+            "groupTypes": [],
+            "visibility": "Private"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "displayName": "Project Alpha Group",
+            "description": "Microsoft 365 group for Project Alpha",
+            "mailEnabled": true,
+            "mailNickname": "projectalpha",
+            "securityEnabled": false,
+            "groupTypes": [
+              "Unified"
+            ],
+            "visibility": "Private"
+          }

@@ -1,0 +1,70 @@
+info:
+  name: List learning providers
+  type: http
+  seq: 1
+  tags:
+    - EmployeeLearning
+
+http:
+  method: GET
+  url: "{{baseUrl}}/employeeExperience/learningProviders"
+  params:
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "provider-001",
+                "displayName": "LinkedIn Learning",
+                "loginWebUrl": "https://www.linkedin.com/learning",
+                "isCourseActivitySyncEnabled": true
+              },
+              {
+                "id": "provider-002",
+                "displayName": "Coursera",
+                "loginWebUrl": "https://www.coursera.org",
+                "isCourseActivitySyncEnabled": false
+              }
+            ]
+          }

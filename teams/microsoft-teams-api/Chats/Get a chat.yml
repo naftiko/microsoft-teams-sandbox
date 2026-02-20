@@ -1,0 +1,49 @@
+info:
+  name: Get a chat
+  type: http
+  seq: 3
+  tags:
+    - Chats
+
+http:
+  method: GET
+  url: "{{baseUrl}}/chats/:chat-id"
+  params:
+    - name: chat-id
+      value: "chat-001"
+      type: path
+      description: Unique identifier of the chat.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/chats/:chat-id"
+      method: GET
+      params:
+        - name: chat-id
+          value: ""
+          type: path
+          description: Unique identifier of the chat.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "19:chat-abc123@thread.v2",
+            "topic": "Project Discussion",
+            "chatType": "group",
+            "createdDateTime": "2025-01-15T09:00:00Z",
+            "lastUpdatedDateTime": "2025-01-20T14:30:00Z"
+          }

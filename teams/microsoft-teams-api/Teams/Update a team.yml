@@ -1,0 +1,165 @@
+info:
+  name: Update a team
+  type: http
+  seq: 4
+  tags:
+    - Teams
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/teams/:team-id"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "internalId": "",
+        "isArchived": false,
+        "visibility": "private",
+        "memberSettings": {
+          "allowCreateUpdateChannels": false,
+          "allowDeleteChannels": false,
+          "allowAddRemoveApps": false,
+          "allowCreateUpdateRemoveTabs": false,
+          "allowCreateUpdateRemoveConnectors": false
+        },
+        "messagingSettings": {
+          "allowUserEditMessages": false,
+          "allowUserDeleteMessages": false,
+          "allowOwnerDeleteMessages": false,
+          "allowTeamMentions": false,
+          "allowChannelMentions": false
+        },
+        "funSettings": {
+          "allowGiphy": false,
+          "giphyContentRating": "strict",
+          "allowStickersAndMemes": false,
+          "allowCustomMemes": false
+        },
+        "template@odata.bind": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully updated.
+    request:
+      url: "{{baseUrl}}/teams/:team-id"
+      method: PATCH
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "internalId": "",
+            "isArchived": false,
+            "visibility": "private",
+            "memberSettings": {
+              "allowCreateUpdateChannels": false,
+              "allowDeleteChannels": false,
+              "allowAddRemoveApps": false,
+              "allowCreateUpdateRemoveTabs": false,
+              "allowCreateUpdateRemoveConnectors": false
+            },
+            "messagingSettings": {
+              "allowUserEditMessages": false,
+              "allowUserDeleteMessages": false,
+              "allowOwnerDeleteMessages": false,
+              "allowTeamMentions": false,
+              "allowChannelMentions": false
+            },
+            "funSettings": {
+              "allowGiphy": false,
+              "giphyContentRating": "strict",
+              "allowStickersAndMemes": false,
+              "allowCustomMemes": false
+            },
+            "template@odata.bind": ""
+          }
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id"
+      method: PATCH
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "internalId": "",
+            "isArchived": false,
+            "visibility": "private",
+            "memberSettings": {
+              "allowCreateUpdateChannels": false,
+              "allowDeleteChannels": false,
+              "allowAddRemoveApps": false,
+              "allowCreateUpdateRemoveTabs": false,
+              "allowCreateUpdateRemoveConnectors": false
+            },
+            "messagingSettings": {
+              "allowUserEditMessages": false,
+              "allowUserDeleteMessages": false,
+              "allowOwnerDeleteMessages": false,
+              "allowTeamMentions": false,
+              "allowChannelMentions": false
+            },
+            "funSettings": {
+              "allowGiphy": false,
+              "giphyContentRating": "strict",
+              "allowStickersAndMemes": false,
+              "allowCustomMemes": false
+            },
+            "template@odata.bind": ""
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is malformed or incorrect.",
+              "innerError": {
+                "date": "2025-01-20T14:30:00",
+                "request-id": "req-abc-123",
+                "client-request-id": "client-abc-123"
+              }
+            }
+          }

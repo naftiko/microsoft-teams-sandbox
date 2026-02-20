@@ -1,0 +1,40 @@
+info:
+  name: Remove an app from the catalog
+  type: http
+  seq: 4
+  tags:
+    - Apps
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/appCatalogs/teamsApps/:app-id"
+  params:
+    - name: app-id
+      value: "123"
+      type: path
+      description: Unique identifier of the Teams app.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully deleted.
+    request:
+      url: "{{baseUrl}}/appCatalogs/teamsApps/:app-id"
+      method: DELETE
+      params:
+        - name: app-id
+          value: ""
+          type: path
+          description: Unique identifier of the Teams app.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

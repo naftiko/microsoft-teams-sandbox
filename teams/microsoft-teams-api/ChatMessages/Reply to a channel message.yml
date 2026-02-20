@@ -1,0 +1,155 @@
+info:
+  name: Reply to a channel message
+  type: http
+  seq: 6
+  tags:
+    - ChatMessages
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/messages/:message-id/replies"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: channel-id
+      value: "channel-001"
+      type: path
+      description: Unique identifier of the channel.
+    - name: message-id
+      value: "message-001"
+      type: path
+      description: Unique identifier of the message.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "messageType": "message",
+        "createdDateTime": "",
+        "lastModifiedDateTime": "",
+        "subject": "",
+        "body": {
+          "contentType": "text",
+          "content": ""
+        },
+        "from": {
+          "application": {
+            "id": "",
+            "displayName": ""
+          },
+          "device": {},
+          "user": {}
+        },
+        "importance": "normal",
+        "attachments": [
+          {
+            "id": "",
+            "contentType": "",
+            "contentUrl": "",
+            "content": "",
+            "name": ""
+          }
+        ],
+        "mentions": [
+          {
+            "id": 0,
+            "mentionText": "",
+            "mentioned": {}
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/messages/:message-id/replies"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: channel-id
+          value: ""
+          type: path
+          description: Unique identifier of the channel.
+        - name: message-id
+          value: ""
+          type: path
+          description: Unique identifier of the message.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "messageType": "message",
+            "createdDateTime": "",
+            "lastModifiedDateTime": "",
+            "subject": "",
+            "body": {
+              "contentType": "text",
+              "content": ""
+            },
+            "from": {
+              "application": {
+                "id": "",
+                "displayName": ""
+              },
+              "device": {},
+              "user": {}
+            },
+            "importance": "normal",
+            "attachments": [
+              {
+                "id": "",
+                "contentType": "",
+                "contentUrl": "",
+                "content": "",
+                "name": ""
+              }
+            ],
+            "mentions": [
+              {
+                "id": 0,
+                "mentionText": "",
+                "mentioned": {}
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "msg-001",
+            "messageType": "message",
+            "createdDateTime": "2025-01-20T14:30:00Z",
+            "subject": null,
+            "body": {
+              "contentType": "text",
+              "content": "Hello team, let's sync up on the project status."
+            },
+            "from": {
+              "user": {
+                "id": "user-001",
+                "displayName": "Jane Smith"
+              }
+            },
+            "importance": "normal",
+            "attachments": [],
+            "mentions": []
+          }

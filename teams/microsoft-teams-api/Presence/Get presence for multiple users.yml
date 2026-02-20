@@ -1,0 +1,58 @@
+info:
+  name: Get presence for multiple users
+  type: http
+  seq: 3
+  tags:
+    - Presence
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/getPresencesByUserId"
+  body:
+    type: json
+    data: |-
+      {
+        "ids": []
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/getPresencesByUserId"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "ids": []
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "user-001",
+                "availability": "Available",
+                "activity": "Available"
+              },
+              {
+                "id": "user-002",
+                "availability": "Busy",
+                "activity": "InACall"
+              }
+            ]
+          }

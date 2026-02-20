@@ -1,0 +1,44 @@
+info:
+  name: List workforce integrations
+  type: http
+  seq: 1
+  tags:
+    - WorkforceIntegrations
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teamwork/workforceIntegrations"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teamwork/workforceIntegrations"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "wfi-001",
+                "displayName": "Kronos Integration",
+                "apiVersion": 1,
+                "isActive": true,
+                "url": "https://kronos.example.com/api/v1/teams",
+                "supportedEntities": "shift,timeCard,timeOff"
+              }
+            ]
+          }

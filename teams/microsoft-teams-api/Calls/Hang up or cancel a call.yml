@@ -1,0 +1,40 @@
+info:
+  name: Hang up or cancel a call
+  type: http
+  seq: 3
+  tags:
+    - Calls
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/communications/calls/:call-id"
+  params:
+    - name: call-id
+      value: call-001
+      type: path
+      description: Unique identifier of the call.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Call ended.
+    request:
+      url: "{{baseUrl}}/communications/calls/:call-id"
+      method: DELETE
+      params:
+        - name: call-id
+          value: ""
+          type: path
+          description: Unique identifier of the call.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

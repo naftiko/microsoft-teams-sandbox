@@ -1,0 +1,82 @@
+info:
+  name: List messages in a chat
+  type: http
+  seq: 1
+  tags:
+    - ChatMessages
+
+http:
+  method: GET
+  url: "{{baseUrl}}/chats/:chat-id/messages"
+  params:
+    - name: chat-id
+      value: chat-001
+      type: path
+      description: Unique identifier of the chat.
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $orderby
+      value: ""
+      type: query
+      description: OData orderBy expression.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/chats/:chat-id/messages"
+      method: GET
+      params:
+        - name: chat-id
+          value: ""
+          type: path
+          description: Unique identifier of the chat.
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData orderBy expression.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "msg-001",
+                "messageType": "message",
+                "createdDateTime": "2025-01-20T14:30:00Z",
+                "body": {
+                  "contentType": "text",
+                  "content": "Hello team, let's sync up on the project status."
+                },
+                "from": {
+                  "user": {
+                    "id": "user-001",
+                    "displayName": "Jane Smith"
+                  }
+                },
+                "importance": "normal"
+              }
+            ]
+          }

@@ -1,0 +1,48 @@
+info:
+  name: Get a learning provider
+  type: http
+  seq: 3
+  tags:
+    - EmployeeLearning
+
+http:
+  method: GET
+  url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id"
+  params:
+    - name: learningProvider-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning provider.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id"
+      method: GET
+      params:
+        - name: learningProvider-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning provider.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "provider-001",
+            "displayName": "LinkedIn Learning",
+            "loginWebUrl": "https://www.linkedin.com/learning",
+            "isCourseActivitySyncEnabled": true
+          }

@@ -1,0 +1,89 @@
+info:
+  name: List channels in a team
+  type: http
+  seq: 1
+  tags:
+    - Channels
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/channels"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $select
+      value: ""
+      type: query
+      description: Comma-separated list of properties to include.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $select
+          value: ""
+          type: query
+          description: Comma-separated list of properties to include.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "@odata.count": 2,
+            "value": [
+              {
+                "id": "19:channel123@thread.tacv2",
+                "displayName": "General",
+                "description": "General discussion channel",
+                "membershipType": "standard"
+              },
+              {
+                "id": "19:channel456@thread.tacv2",
+                "displayName": "Development",
+                "description": "Dev team channel",
+                "membershipType": "private"
+              }
+            ]
+          }

@@ -1,0 +1,126 @@
+info:
+  name: Create a shift
+  type: http
+  seq: 2
+  tags:
+    - Shifts
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/schedule/shifts"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "userId": "",
+        "schedulingGroupId": "",
+        "sharedShift": {
+          "displayName": "",
+          "notes": "",
+          "startDateTime": "",
+          "endDateTime": "",
+          "theme": "white",
+          "activities": [
+            {
+              "isPaid": false,
+              "startDateTime": "",
+              "endDateTime": "",
+              "code": "",
+              "displayName": ""
+            }
+          ]
+        },
+        "draftShift": {},
+        "createdDateTime": "",
+        "lastModifiedDateTime": "",
+        "lastModifiedBy": {
+          "application": {
+            "id": "",
+            "displayName": ""
+          },
+          "device": {},
+          "user": {}
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/shifts"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "userId": "",
+            "schedulingGroupId": "",
+            "sharedShift": {
+              "displayName": "",
+              "notes": "",
+              "startDateTime": "",
+              "endDateTime": "",
+              "theme": "white",
+              "activities": [
+                {
+                  "isPaid": false,
+                  "startDateTime": "",
+                  "endDateTime": "",
+                  "code": "",
+                  "displayName": ""
+                }
+              ]
+            },
+            "draftShift": {},
+            "createdDateTime": "",
+            "lastModifiedDateTime": "",
+            "lastModifiedBy": {
+              "application": {
+                "id": "",
+                "displayName": ""
+              },
+              "device": {},
+              "user": {}
+            }
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "shift-001",
+            "userId": "user-001",
+            "schedulingGroupId": "group-001",
+            "createdDateTime": "2025-01-15T08:00:00Z",
+            "lastModifiedDateTime": "2025-01-15T08:00:00Z",
+            "sharedShift": {
+              "displayName": "Morning Shift",
+              "startDateTime": "2025-01-22T08:00:00Z",
+              "endDateTime": "2025-01-22T16:00:00Z",
+              "theme": "blue",
+              "notes": "Regular morning shift"
+            }
+          }

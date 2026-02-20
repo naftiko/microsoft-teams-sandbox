@@ -1,0 +1,89 @@
+info:
+  name: List groups
+  type: http
+  seq: 1
+  tags:
+    - Groups
+
+http:
+  method: GET
+  url: "{{baseUrl}}/groups"
+  params:
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $skip
+      value: ""
+      type: query
+      description: Number of items to skip.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $select
+      value: ""
+      type: query
+      description: Comma-separated list of properties to include.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/groups"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $skip
+          value: ""
+          type: query
+          description: Number of items to skip.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $select
+          value: ""
+          type: query
+          description: Comma-separated list of properties to include.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "displayName": "Project Alpha Group",
+                "mailEnabled": true,
+                "mailNickname": "projectalpha",
+                "securityEnabled": false,
+                "groupTypes": [
+                  "Unified"
+                ],
+                "visibility": "Private"
+              }
+            ]
+          }

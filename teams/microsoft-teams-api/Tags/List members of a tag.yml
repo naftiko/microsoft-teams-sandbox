@@ -1,0 +1,64 @@
+info:
+  name: List members of a tag
+  type: http
+  seq: 6
+  tags:
+    - Tags
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/tags/:tag-id/members"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: tag-id
+      value: "123"
+      type: path
+      description: Unique identifier of the tag.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/tags/:tag-id/members"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: tag-id
+          value: ""
+          type: path
+          description: Unique identifier of the tag.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "tagmember-001",
+                "displayName": "John Doe",
+                "userId": "user-001"
+              },
+              {
+                "id": "tagmember-002",
+                "displayName": "Jane Smith",
+                "userId": "user-002"
+              }
+            ]
+          }

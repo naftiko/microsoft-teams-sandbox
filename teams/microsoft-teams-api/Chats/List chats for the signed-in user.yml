@@ -1,0 +1,90 @@
+info:
+  name: List chats for the signed-in user
+  type: http
+  seq: 1
+  tags:
+    - Chats
+
+http:
+  method: GET
+  url: "{{baseUrl}}/chats"
+  params:
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $expand
+      value: ""
+      type: query
+      description: Comma-separated list of relationships to expand.
+      disabled: true
+    - name: $orderby
+      value: ""
+      type: query
+      description: OData orderBy expression.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/chats"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $expand
+          value: ""
+          type: query
+          description: Comma-separated list of relationships to expand.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData orderBy expression.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "19:chat-abc123@thread.v2",
+                "topic": "Project Discussion",
+                "chatType": "group",
+                "createdDateTime": "2025-01-15T09:00:00Z"
+              },
+              {
+                "id": "19:chat-def456@thread.v2",
+                "topic": null,
+                "chatType": "oneOnOne",
+                "createdDateTime": "2025-01-10T08:00:00Z"
+              }
+            ]
+          }

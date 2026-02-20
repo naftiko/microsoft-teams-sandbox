@@ -1,0 +1,48 @@
+info:
+  name: Delete learning content
+  type: http
+  seq: 10
+  tags:
+    - EmployeeLearning
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id/learningContents/:learningContent-id"
+  params:
+    - name: learningProvider-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning provider.
+    - name: learningContent-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning content.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully deleted.
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id/learningContents/:learningContent-id"
+      method: DELETE
+      params:
+        - name: learningProvider-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning provider.
+        - name: learningContent-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning content.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

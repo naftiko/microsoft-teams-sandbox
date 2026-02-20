@@ -1,0 +1,64 @@
+info:
+  name: Register a learning provider
+  type: http
+  seq: 2
+  tags:
+    - EmployeeLearning
+
+http:
+  method: POST
+  url: "{{baseUrl}}/employeeExperience/learningProviders"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "loginWebUrl": "",
+        "longLogoWebUrlForDarkTheme": "",
+        "longLogoWebUrlForLightTheme": "",
+        "squareLogoWebUrlForDarkTheme": "",
+        "squareLogoWebUrlForLightTheme": "",
+        "isCourseActivitySyncEnabled": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "loginWebUrl": "",
+            "longLogoWebUrlForDarkTheme": "",
+            "longLogoWebUrlForLightTheme": "",
+            "squareLogoWebUrlForDarkTheme": "",
+            "squareLogoWebUrlForLightTheme": "",
+            "isCourseActivitySyncEnabled": false
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "provider-001",
+            "displayName": "LinkedIn Learning",
+            "loginWebUrl": "https://www.linkedin.com/learning",
+            "isCourseActivitySyncEnabled": true
+          }

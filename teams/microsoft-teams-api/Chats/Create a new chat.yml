@@ -1,0 +1,75 @@
+info:
+  name: Create a new chat
+  type: http
+  seq: 2
+  tags:
+    - Chats
+
+http:
+  method: POST
+  url: "{{baseUrl}}/chats"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "topic": "",
+        "chatType": "oneOnOne",
+        "createdDateTime": "",
+        "lastUpdatedDateTime": "",
+        "members": [
+          {
+            "id": "",
+            "displayName": "",
+            "roles": [],
+            "user@odata.bind": ""
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/chats"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "topic": "",
+            "chatType": "oneOnOne",
+            "createdDateTime": "",
+            "lastUpdatedDateTime": "",
+            "members": [
+              {
+                "id": "",
+                "displayName": "",
+                "roles": [],
+                "user@odata.bind": ""
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "19:chat-abc123@thread.v2",
+            "topic": "Project Discussion",
+            "chatType": "group",
+            "createdDateTime": "2025-01-15T09:00:00Z",
+            "lastUpdatedDateTime": "2025-01-20T14:30:00Z"
+          }

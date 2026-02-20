@@ -1,0 +1,92 @@
+info:
+  name: Record a response from call participant (IVR)
+  type: http
+  seq: 2
+  tags:
+    - CallIvr
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/calls/:call-id/recordResponse"
+  params:
+    - name: call-id
+      value: call-001
+      type: path
+      description: Unique identifier of the call.
+  body:
+    type: json
+    data: |-
+      {
+        "prompts": [
+          {
+            "@odata.type": "#microsoft.graph.mediaPrompt",
+            "mediaInfo": {
+              "uri": "",
+              "resourceId": ""
+            }
+          }
+        ],
+        "bargeInAllowed": false,
+        "initialSilenceTimeoutInSeconds": 0,
+        "maxSilenceTimeoutInSeconds": 0,
+        "maxRecordDurationInSeconds": 0,
+        "stopTones": [
+          "#"
+        ],
+        "clientContext": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/calls/:call-id/recordResponse"
+      method: POST
+      params:
+        - name: call-id
+          value: ""
+          type: path
+          description: Unique identifier of the call.
+      body:
+        type: json
+        data: |-
+          {
+            "prompts": [
+              {
+                "@odata.type": "#microsoft.graph.mediaPrompt",
+                "mediaInfo": {
+                  "uri": "",
+                  "resourceId": ""
+                }
+              }
+            ],
+            "bargeInAllowed": false,
+            "initialSilenceTimeoutInSeconds": 0,
+            "maxSilenceTimeoutInSeconds": 0,
+            "maxRecordDurationInSeconds": 0,
+            "stopTones": [
+              "#"
+            ],
+            "clientContext": ""
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "op-record-001",
+            "status": "completed",
+            "recordingLocation": "https://storage.example.com/recordings/rec-001.wav",
+            "clientContext": "ctx-003"
+          }

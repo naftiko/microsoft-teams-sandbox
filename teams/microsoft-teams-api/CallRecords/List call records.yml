@@ -1,0 +1,78 @@
+info:
+  name: List call records
+  type: http
+  seq: 1
+  tags:
+    - CallRecords
+
+http:
+  method: GET
+  url: "{{baseUrl}}/communications/callRecords"
+  params:
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $orderby
+      value: ""
+      type: query
+      description: OData orderBy expression.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/callRecords"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData orderBy expression.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "callrecord-001",
+                "version": 1,
+                "type": "peerToPeer",
+                "modalities": [
+                  "audio"
+                ],
+                "startDateTime": "2025-01-20T14:00:00Z",
+                "endDateTime": "2025-01-20T14:30:00Z"
+              }
+            ]
+          }

@@ -1,0 +1,206 @@
+info:
+  name: Create a team
+  type: http
+  seq: 2
+  tags:
+    - Teams
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "internalId": "",
+        "isArchived": false,
+        "visibility": "private",
+        "memberSettings": {
+          "allowCreateUpdateChannels": false,
+          "allowDeleteChannels": false,
+          "allowAddRemoveApps": false,
+          "allowCreateUpdateRemoveTabs": false,
+          "allowCreateUpdateRemoveConnectors": false
+        },
+        "messagingSettings": {
+          "allowUserEditMessages": false,
+          "allowUserDeleteMessages": false,
+          "allowOwnerDeleteMessages": false,
+          "allowTeamMentions": false,
+          "allowChannelMentions": false
+        },
+        "funSettings": {
+          "allowGiphy": false,
+          "giphyContentRating": "strict",
+          "allowStickersAndMemes": false,
+          "allowCustomMemes": false
+        },
+        "template@odata.bind": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 202 Response
+    description: Accepted. The team is being provisioned asynchronously.
+    request:
+      url: "{{baseUrl}}/teams"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "internalId": "",
+            "isArchived": false,
+            "visibility": "private",
+            "memberSettings": {
+              "allowCreateUpdateChannels": false,
+              "allowDeleteChannels": false,
+              "allowAddRemoveApps": false,
+              "allowCreateUpdateRemoveTabs": false,
+              "allowCreateUpdateRemoveConnectors": false
+            },
+            "messagingSettings": {
+              "allowUserEditMessages": false,
+              "allowUserDeleteMessages": false,
+              "allowOwnerDeleteMessages": false,
+              "allowTeamMentions": false,
+              "allowChannelMentions": false
+            },
+            "funSettings": {
+              "allowGiphy": false,
+              "giphyContentRating": "strict",
+              "allowStickersAndMemes": false,
+              "allowCustomMemes": false
+            },
+            "template@odata.bind": ""
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      body:
+        type: text
+        data: ""
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "internalId": "",
+            "isArchived": false,
+            "visibility": "private",
+            "memberSettings": {
+              "allowCreateUpdateChannels": false,
+              "allowDeleteChannels": false,
+              "allowAddRemoveApps": false,
+              "allowCreateUpdateRemoveTabs": false,
+              "allowCreateUpdateRemoveConnectors": false
+            },
+            "messagingSettings": {
+              "allowUserEditMessages": false,
+              "allowUserDeleteMessages": false,
+              "allowOwnerDeleteMessages": false,
+              "allowTeamMentions": false,
+              "allowChannelMentions": false
+            },
+            "funSettings": {
+              "allowGiphy": false,
+              "giphyContentRating": "strict",
+              "allowStickersAndMemes": false,
+              "allowCustomMemes": false
+            },
+            "template@odata.bind": ""
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is malformed or incorrect.",
+              "innerError": {
+                "date": "2025-01-20T14:30:00",
+                "request-id": "req-abc-123",
+                "client-request-id": "client-abc-123"
+              }
+            }
+          }
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "internalId": "",
+            "isArchived": false,
+            "visibility": "private",
+            "memberSettings": {
+              "allowCreateUpdateChannels": false,
+              "allowDeleteChannels": false,
+              "allowAddRemoveApps": false,
+              "allowCreateUpdateRemoveTabs": false,
+              "allowCreateUpdateRemoveConnectors": false
+            },
+            "messagingSettings": {
+              "allowUserEditMessages": false,
+              "allowUserDeleteMessages": false,
+              "allowOwnerDeleteMessages": false,
+              "allowTeamMentions": false,
+              "allowChannelMentions": false
+            },
+            "funSettings": {
+              "allowGiphy": false,
+              "giphyContentRating": "strict",
+              "allowStickersAndMemes": false,
+              "allowCustomMemes": false
+            },
+            "template@odata.bind": ""
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is malformed or incorrect.",
+              "innerError": {
+                "date": "2025-01-20T14:30:00",
+                "request-id": "req-abc-123",
+                "client-request-id": "client-abc-123"
+              }
+            }
+          }

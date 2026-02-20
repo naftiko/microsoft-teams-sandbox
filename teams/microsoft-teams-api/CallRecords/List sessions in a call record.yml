@@ -1,0 +1,64 @@
+info:
+  name: List sessions in a call record
+  type: http
+  seq: 3
+  tags:
+    - CallRecords
+
+http:
+  method: GET
+  url: "{{baseUrl}}/communications/callRecords/:callRecord-id/sessions"
+  params:
+    - name: callRecord-id
+      value: call-record-001
+      type: path
+      description: Unique identifier of the call record.
+    - name: $expand
+      value: ""
+      type: query
+      description: Comma-separated list of relationships to expand.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/callRecords/:callRecord-id/sessions"
+      method: GET
+      params:
+        - name: callRecord-id
+          value: ""
+          type: path
+          description: Unique identifier of the call record.
+        - name: $expand
+          value: ""
+          type: query
+          description: Comma-separated list of relationships to expand.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "session-001",
+                "startDateTime": "2025-01-20T14:00:00Z",
+                "endDateTime": "2025-01-20T14:30:00Z",
+                "modalities": [
+                  "audio"
+                ]
+              }
+            ]
+          }

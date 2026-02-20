@@ -1,0 +1,81 @@
+info:
+  name: Clock in a time card
+  type: http
+  seq: 8
+  tags:
+    - Shifts
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/schedule/timeCards/:timeCard-id/clockIn"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: timeCard-id
+      value: "123"
+      type: path
+      description: Unique identifier of the time card.
+  body:
+    type: json
+    data: |-
+      {
+        "atApprovedLocation": false,
+        "notes": {
+          "contentType": "text",
+          "content": ""
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/timeCards/:timeCard-id/clockIn"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: timeCard-id
+          value: ""
+          type: path
+          description: Unique identifier of the time card.
+      body:
+        type: json
+        data: |-
+          {
+            "atApprovedLocation": false,
+            "notes": {
+              "contentType": "text",
+              "content": ""
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "timecard-001",
+            "userId": "user-001",
+            "state": "clockedIn",
+            "clockInEvent": {
+              "dateTime": "2025-01-22T08:00:00Z",
+              "atApprovedLocation": true
+            },
+            "createdDateTime": "2025-01-22T08:00:00Z",
+            "lastModifiedDateTime": "2025-01-22T08:00:00Z"
+          }

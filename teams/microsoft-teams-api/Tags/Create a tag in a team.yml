@@ -1,0 +1,83 @@
+info:
+  name: Create a tag in a team
+  type: http
+  seq: 2
+  tags:
+    - Tags
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/tags"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "memberCount": 0,
+        "tagType": "standard",
+        "members": [
+          {
+            "id": "",
+            "displayName": "",
+            "userId": ""
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/tags"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "memberCount": 0,
+            "tagType": "standard",
+            "members": [
+              {
+                "id": "",
+                "displayName": "",
+                "userId": ""
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "tag-001",
+            "displayName": "Frontend Developers",
+            "description": "All frontend team members",
+            "memberCount": 5,
+            "tagType": "standard"
+          }

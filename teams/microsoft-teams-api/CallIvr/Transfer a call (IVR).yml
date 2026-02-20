@@ -1,0 +1,74 @@
+info:
+  name: Transfer a call (IVR)
+  type: http
+  seq: 3
+  tags:
+    - CallIvr
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/calls/:call-id/transfer"
+  params:
+    - name: call-id
+      value: call-001
+      type: path
+      description: Unique identifier of the call.
+  body:
+    type: json
+    data: |-
+      {
+        "transferTarget": {
+          "identity": {
+            "application": {
+              "id": "",
+              "displayName": ""
+            },
+            "device": {},
+            "user": {}
+          },
+          "replacesCallId": ""
+        },
+        "clientContext": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 202 Response
+    description: Accepted.
+    request:
+      url: "{{baseUrl}}/communications/calls/:call-id/transfer"
+      method: POST
+      params:
+        - name: call-id
+          value: ""
+          type: path
+          description: Unique identifier of the call.
+      body:
+        type: json
+        data: |-
+          {
+            "transferTarget": {
+              "identity": {
+                "application": {
+                  "id": "",
+                  "displayName": ""
+                },
+                "device": {},
+                "user": {}
+              },
+              "replacesCallId": ""
+            },
+            "clientContext": ""
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      body:
+        type: text
+        data: ""

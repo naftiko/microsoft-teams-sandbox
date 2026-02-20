@@ -1,0 +1,71 @@
+info:
+  name: Add a member to a tag
+  type: http
+  seq: 7
+  tags:
+    - Tags
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/tags/:tag-id/members"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: tag-id
+      value: "123"
+      type: path
+      description: Unique identifier of the tag.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "userId": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/tags/:tag-id/members"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: tag-id
+          value: ""
+          type: path
+          description: Unique identifier of the tag.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "userId": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "tagmember-001",
+            "displayName": "John Doe",
+            "userId": "user-001"
+          }

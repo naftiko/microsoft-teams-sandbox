@@ -1,0 +1,60 @@
+info:
+  name: Install an app to a team
+  type: http
+  seq: 2
+  tags:
+    - AppInstallations
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/installedApps"
+  params:
+    - name: team-id
+      value: install-001
+      type: path
+      description: Unique identifier of the team.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "teamsApp@odata.bind": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/installedApps"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "teamsApp@odata.bind": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "install-001",
+            "teamsApp@odata.bind": "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/app-id-001"
+          }

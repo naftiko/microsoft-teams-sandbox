@@ -1,0 +1,72 @@
+info:
+  name: Update a channel
+  type: http
+  seq: 4
+  tags:
+    - Channels
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/teams/:team-id/channels/:channel-id"
+  params:
+    - name: team-id
+      value: team-001
+      type: path
+      description: Unique identifier of the team.
+    - name: channel-id
+      value: channel-001
+      type: path
+      description: Unique identifier of the channel.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "membershipType": "standard",
+        "email": "",
+        "webUrl": "",
+        "createdDateTime": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully updated.
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels/:channel-id"
+      method: PATCH
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: channel-id
+          value: ""
+          type: path
+          description: Unique identifier of the channel.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "membershipType": "standard",
+            "email": "",
+            "webUrl": "",
+            "createdDateTime": ""
+          }
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

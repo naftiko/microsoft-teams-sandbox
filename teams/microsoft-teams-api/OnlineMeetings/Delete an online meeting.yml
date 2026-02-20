@@ -1,0 +1,40 @@
+info:
+  name: Delete an online meeting
+  type: http
+  seq: 5
+  tags:
+    - OnlineMeetings
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/me/onlineMeetings/:meeting-id"
+  params:
+    - name: meeting-id
+      value: "123"
+      type: path
+      description: Unique identifier of the online meeting.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully deleted.
+    request:
+      url: "{{baseUrl}}/me/onlineMeetings/:meeting-id"
+      method: DELETE
+      params:
+        - name: meeting-id
+          value: ""
+          type: path
+          description: Unique identifier of the online meeting.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

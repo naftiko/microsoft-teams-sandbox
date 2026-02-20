@@ -1,0 +1,54 @@
+info:
+  name: Get a group
+  type: http
+  seq: 3
+  tags:
+    - Groups
+
+http:
+  method: GET
+  url: "{{baseUrl}}/groups/:group-id"
+  params:
+    - name: group-id
+      value: "123"
+      type: path
+      description: Unique identifier of the group.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/groups/:group-id"
+      method: GET
+      params:
+        - name: group-id
+          value: ""
+          type: path
+          description: Unique identifier of the group.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "displayName": "Project Alpha Group",
+            "description": "Microsoft 365 group for Project Alpha",
+            "mailEnabled": true,
+            "mailNickname": "projectalpha",
+            "securityEnabled": false,
+            "groupTypes": [
+              "Unified"
+            ],
+            "visibility": "Private"
+          }

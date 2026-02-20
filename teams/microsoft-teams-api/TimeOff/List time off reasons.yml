@@ -1,0 +1,58 @@
+info:
+  name: List time off reasons
+  type: http
+  seq: 6
+  tags:
+    - TimeOff
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/schedule/timeOffReasons"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/timeOffReasons"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "reason-001",
+                "displayName": "Vacation",
+                "iconType": "plane",
+                "isActive": true
+              },
+              {
+                "id": "reason-002",
+                "displayName": "Sick Leave",
+                "iconType": "firstAid",
+                "isActive": true
+              }
+            ]
+          }

@@ -1,0 +1,60 @@
+info:
+  name: List tags in a team
+  type: http
+  seq: 1
+  tags:
+    - Tags
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/tags"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/tags"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "tag-001",
+                "displayName": "Frontend Developers",
+                "description": "All frontend team members",
+                "memberCount": 5,
+                "tagType": "standard"
+              },
+              {
+                "id": "tag-002",
+                "displayName": "Backend Developers",
+                "description": "All backend team members",
+                "memberCount": 8,
+                "tagType": "standard"
+              }
+            ]
+          }

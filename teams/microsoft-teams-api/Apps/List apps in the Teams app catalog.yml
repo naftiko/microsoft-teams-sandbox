@@ -1,0 +1,80 @@
+info:
+  name: List apps in the Teams app catalog
+  type: http
+  seq: 1
+  tags:
+    - Apps
+
+http:
+  method: GET
+  url: "{{baseUrl}}/appCatalogs/teamsApps"
+  params:
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $select
+      value: ""
+      type: query
+      description: Comma-separated list of properties to include.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/appCatalogs/teamsApps"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $select
+          value: ""
+          type: query
+          description: Comma-separated list of properties to include.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "app-id-001",
+                "externalId": "com.example.myapp",
+                "displayName": "My Custom App",
+                "distributionMethod": "organization"
+              },
+              {
+                "id": "app-id-002",
+                "externalId": "com.example.otherapp",
+                "displayName": "Another App",
+                "distributionMethod": "store"
+              }
+            ]
+          }

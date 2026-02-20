@@ -1,0 +1,66 @@
+info:
+  name: Update a group
+  type: http
+  seq: 4
+  tags:
+    - Groups
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/groups/:group-id"
+  params:
+    - name: group-id
+      value: "123"
+      type: path
+      description: Unique identifier of the group.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "mailEnabled": false,
+        "mailNickname": "",
+        "securityEnabled": false,
+        "groupTypes": [],
+        "visibility": "Private"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully updated.
+    request:
+      url: "{{baseUrl}}/groups/:group-id"
+      method: PATCH
+      params:
+        - name: group-id
+          value: ""
+          type: path
+          description: Unique identifier of the group.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "mailEnabled": false,
+            "mailNickname": "",
+            "securityEnabled": false,
+            "groupTypes": [],
+            "visibility": "Private"
+          }
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

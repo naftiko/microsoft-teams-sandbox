@@ -1,0 +1,64 @@
+info:
+  name: Answer a call
+  type: http
+  seq: 4
+  tags:
+    - Calls
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/calls/:call-id/answer"
+  params:
+    - name: call-id
+      value: "call-001"
+      type: path
+      description: Unique identifier of the call.
+  body:
+    type: json
+    data: |-
+      {
+        "callbackUri": "",
+        "acceptedModalities": [
+          "audio"
+        ],
+        "mediaConfig": {
+          "@odata.type": "#microsoft.graph.serviceHostedMediaConfig"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 202 Response
+    description: Accepted.
+    request:
+      url: "{{baseUrl}}/communications/calls/:call-id/answer"
+      method: POST
+      params:
+        - name: call-id
+          value: ""
+          type: path
+          description: Unique identifier of the call.
+      body:
+        type: json
+        data: |-
+          {
+            "callbackUri": "",
+            "acceptedModalities": [
+              "audio"
+            ],
+            "mediaConfig": {
+              "@odata.type": "#microsoft.graph.serviceHostedMediaConfig"
+            }
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      body:
+        type: text
+        data: ""

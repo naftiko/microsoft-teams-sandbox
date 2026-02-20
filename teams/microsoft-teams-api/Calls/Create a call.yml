@@ -1,0 +1,122 @@
+info:
+  name: Create a call
+  type: http
+  seq: 1
+  tags:
+    - Calls
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/calls"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "state": "incoming",
+        "direction": "incoming",
+        "callbackUri": "",
+        "source": {
+          "identity": {
+            "application": {
+              "id": "",
+              "displayName": ""
+            },
+            "device": {},
+            "user": {}
+          }
+        },
+        "targets": [
+          {
+            "identity": {},
+            "replacesCallId": ""
+          }
+        ],
+        "requestedModalities": [
+          "audio"
+        ],
+        "mediaConfig": {
+          "@odata.type": "#microsoft.graph.serviceHostedMediaConfig"
+        },
+        "tenantId": "",
+        "chatInfo": {
+          "threadId": "",
+          "messageId": ""
+        },
+        "meetingInfo": {
+          "organizerId": "",
+          "tenantId": ""
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/calls"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "state": "incoming",
+            "direction": "incoming",
+            "callbackUri": "",
+            "source": {
+              "identity": {
+                "application": {
+                  "id": "",
+                  "displayName": ""
+                },
+                "device": {},
+                "user": {}
+              }
+            },
+            "targets": [
+              {
+                "identity": {},
+                "replacesCallId": ""
+              }
+            ],
+            "requestedModalities": [
+              "audio"
+            ],
+            "mediaConfig": {
+              "@odata.type": "#microsoft.graph.serviceHostedMediaConfig"
+            },
+            "tenantId": "",
+            "chatInfo": {
+              "threadId": "",
+              "messageId": ""
+            },
+            "meetingInfo": {
+              "organizerId": "",
+              "tenantId": ""
+            }
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "call-001",
+            "state": "established",
+            "direction": "outgoing",
+            "callbackUri": "https://bot.example.com/api/calls",
+            "requestedModalities": [
+              "audio"
+            ],
+            "tenantId": "tenant-001"
+          }

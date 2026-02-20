@@ -1,0 +1,74 @@
+info:
+  name: Update a learning provider
+  type: http
+  seq: 4
+  tags:
+    - EmployeeLearning
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id"
+  params:
+    - name: learningProvider-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning provider.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "loginWebUrl": "",
+        "longLogoWebUrlForDarkTheme": "",
+        "longLogoWebUrlForLightTheme": "",
+        "squareLogoWebUrlForDarkTheme": "",
+        "squareLogoWebUrlForLightTheme": "",
+        "isCourseActivitySyncEnabled": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id"
+      method: PATCH
+      params:
+        - name: learningProvider-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning provider.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "loginWebUrl": "",
+            "longLogoWebUrlForDarkTheme": "",
+            "longLogoWebUrlForLightTheme": "",
+            "squareLogoWebUrlForDarkTheme": "",
+            "squareLogoWebUrlForLightTheme": "",
+            "isCourseActivitySyncEnabled": false
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "provider-001",
+            "displayName": "LinkedIn Learning",
+            "loginWebUrl": "https://www.linkedin.com/learning",
+            "isCourseActivitySyncEnabled": true
+          }

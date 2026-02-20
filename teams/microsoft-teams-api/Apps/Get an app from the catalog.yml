@@ -1,0 +1,48 @@
+info:
+  name: Get an app from the catalog
+  type: http
+  seq: 3
+  tags:
+    - Apps
+
+http:
+  method: GET
+  url: "{{baseUrl}}/appCatalogs/teamsApps/:app-id"
+  params:
+    - name: app-id
+      value: "123"
+      type: path
+      description: Unique identifier of the Teams app.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/appCatalogs/teamsApps/:app-id"
+      method: GET
+      params:
+        - name: app-id
+          value: ""
+          type: path
+          description: Unique identifier of the Teams app.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "app-id-001",
+            "externalId": "com.example.myapp",
+            "displayName": "My Custom App",
+            "distributionMethod": "organization"
+          }

@@ -1,0 +1,53 @@
+info:
+  name: Get the schedule for a team
+  type: http
+  seq: 1
+  tags:
+    - Schedules
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/schedule"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "schedule-001",
+            "enabled": true,
+            "timeZone": "America/New_York",
+            "provisionStatus": "completed",
+            "timeClockEnabled": true,
+            "openShiftsEnabled": true,
+            "swapShiftsRequestsEnabled": true,
+            "offerShiftRequestsEnabled": true,
+            "timeOffRequestsEnabled": true
+          }

@@ -1,0 +1,48 @@
+info:
+  name: Delete a time off entry
+  type: http
+  seq: 5
+  tags:
+    - TimeOff
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/teams/:team-id/schedule/timesOff/:timeOff-id"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: timeOff-id
+      value: "123"
+      type: path
+      description: Unique identifier of the time off entry.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully deleted.
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/timesOff/:timeOff-id"
+      method: DELETE
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: timeOff-id
+          value: ""
+          type: path
+          description: Unique identifier of the time off entry.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

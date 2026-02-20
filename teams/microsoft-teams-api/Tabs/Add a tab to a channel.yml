@@ -1,0 +1,90 @@
+info:
+  name: Add a tab to a channel
+  type: http
+  seq: 2
+  tags:
+    - Tabs
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/tabs"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: channel-id
+      value: "channel-001"
+      type: path
+      description: Unique identifier of the channel.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "webUrl": "",
+        "configuration": {
+          "entityId": "",
+          "contentUrl": "",
+          "removeUrl": "",
+          "websiteUrl": ""
+        },
+        "teamsApp@odata.bind": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/tabs"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: channel-id
+          value: ""
+          type: path
+          description: Unique identifier of the channel.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "webUrl": "",
+            "configuration": {
+              "entityId": "",
+              "contentUrl": "",
+              "removeUrl": "",
+              "websiteUrl": ""
+            },
+            "teamsApp@odata.bind": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "tab-id-001",
+            "displayName": "Project Wiki",
+            "webUrl": "https://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.wiki",
+            "configuration": {
+              "entityId": "wiki-001",
+              "contentUrl": "https://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.wiki/tab-id-001",
+              "websiteUrl": "https://wiki.example.com/project"
+            }
+          }

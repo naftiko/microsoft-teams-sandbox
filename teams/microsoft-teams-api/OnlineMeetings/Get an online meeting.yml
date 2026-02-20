@@ -1,0 +1,51 @@
+info:
+  name: Get an online meeting
+  type: http
+  seq: 3
+  tags:
+    - OnlineMeetings
+
+http:
+  method: GET
+  url: "{{baseUrl}}/me/onlineMeetings/:meeting-id"
+  params:
+    - name: meeting-id
+      value: "123"
+      type: path
+      description: Unique identifier of the online meeting.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/me/onlineMeetings/:meeting-id"
+      method: GET
+      params:
+        - name: meeting-id
+          value: ""
+          type: path
+          description: Unique identifier of the online meeting.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "meeting-001",
+            "subject": "Sprint Planning",
+            "startDateTime": "2025-01-22T09:00:00Z",
+            "endDateTime": "2025-01-22T10:00:00Z",
+            "joinWebUrl": "https://teams.microsoft.com/l/meetup-join/19%3Ameeting_abc123",
+            "allowedPresenters": "organization",
+            "isEntryExitAnnounced": true
+          }

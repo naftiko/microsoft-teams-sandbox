@@ -1,0 +1,138 @@
+info:
+  name: List all teams
+  type: http
+  seq: 1
+  tags:
+    - Teams
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams"
+  params:
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $skip
+      value: ""
+      type: query
+      description: Number of items to skip.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $select
+      value: ""
+      type: query
+      description: Comma-separated list of properties to include.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $skip
+          value: ""
+          type: query
+          description: Number of items to skip.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $select
+          value: ""
+          type: query
+          description: Comma-separated list of properties to include.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "@odata.count": 2,
+            "value": [
+              {
+                "id": "e1b3c5a7-9d2f-4b6e-8c1a-3f5d7e9b2a4c",
+                "displayName": "Engineering Team",
+                "description": "Main engineering team",
+                "isArchived": false,
+                "visibility": "private"
+              },
+              {
+                "id": "f2c4d6b8-0e3a-5c7f-9d2b-4a6e8c1f3d5a",
+                "displayName": "Marketing Team",
+                "description": "Marketing and communications",
+                "isArchived": false,
+                "visibility": "public"
+              }
+            ]
+          }
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams"
+      method: GET
+      params:
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $skip
+          value: ""
+          type: query
+          description: Number of items to skip.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $select
+          value: ""
+          type: query
+          description: Comma-separated list of properties to include.
+          disabled: true
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is malformed or incorrect.",
+              "innerError": {
+                "date": "2025-01-20T14:30:00",
+                "request-id": "req-abc-123",
+                "client-request-id": "client-abc-123"
+              }
+            }
+          }

@@ -1,0 +1,47 @@
+info:
+  name: Get presence for a specific user
+  type: http
+  seq: 2
+  tags:
+    - Presence
+
+http:
+  method: GET
+  url: "{{baseUrl}}/users/:user-id/presence"
+  params:
+    - name: user-id
+      value: "123"
+      type: path
+      description: Unique identifier of the user.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/users/:user-id/presence"
+      method: GET
+      params:
+        - name: user-id
+          value: ""
+          type: path
+          description: Unique identifier of the user.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "user-001",
+            "availability": "Available",
+            "activity": "Available"
+          }

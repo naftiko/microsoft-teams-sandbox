@@ -1,0 +1,80 @@
+info:
+  name: List messages in a channel
+  type: http
+  seq: 3
+  tags:
+    - ChatMessages
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/messages"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: channel-id
+      value: "channel-001"
+      type: path
+      description: Unique identifier of the channel.
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/messages"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: channel-id
+          value: ""
+          type: path
+          description: Unique identifier of the channel.
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "msg-001",
+                "messageType": "message",
+                "createdDateTime": "2025-01-20T14:30:00Z",
+                "body": {
+                  "contentType": "text",
+                  "content": "Hello team, let's sync up on the project status."
+                },
+                "from": {
+                  "user": {
+                    "id": "user-001",
+                    "displayName": "Jane Smith"
+                  }
+                },
+                "importance": "normal"
+              }
+            ]
+          }

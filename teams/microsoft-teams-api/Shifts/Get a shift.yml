@@ -1,0 +1,64 @@
+info:
+  name: Get a shift
+  type: http
+  seq: 3
+  tags:
+    - Shifts
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/schedule/shifts/:shift-id"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: shift-id
+      value: "123"
+      type: path
+      description: Unique identifier of the shift.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/shifts/:shift-id"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: shift-id
+          value: ""
+          type: path
+          description: Unique identifier of the shift.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "shift-001",
+            "userId": "user-001",
+            "schedulingGroupId": "group-001",
+            "createdDateTime": "2025-01-15T08:00:00Z",
+            "lastModifiedDateTime": "2025-01-15T08:00:00Z",
+            "sharedShift": {
+              "displayName": "Morning Shift",
+              "startDateTime": "2025-01-22T08:00:00Z",
+              "endDateTime": "2025-01-22T16:00:00Z",
+              "theme": "blue",
+              "notes": "Regular morning shift"
+            }
+          }

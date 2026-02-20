@@ -1,0 +1,68 @@
+info:
+  name: Get a tab
+  type: http
+  seq: 3
+  tags:
+    - Tabs
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/tabs/:tab-id"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: channel-id
+      value: "channel-001"
+      type: path
+      description: Unique identifier of the channel.
+    - name: tab-id
+      value: "123"
+      type: path
+      description: Unique identifier of the tab.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/tabs/:tab-id"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: channel-id
+          value: ""
+          type: path
+          description: Unique identifier of the channel.
+        - name: tab-id
+          value: ""
+          type: path
+          description: Unique identifier of the tab.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "tab-id-001",
+            "displayName": "Project Wiki",
+            "webUrl": "https://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.wiki",
+            "configuration": {
+              "entityId": "wiki-001",
+              "contentUrl": "https://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.wiki/tab-id-001",
+              "websiteUrl": "https://wiki.example.com/project"
+            }
+          }

@@ -1,0 +1,85 @@
+info:
+  name: Invite participants to a call
+  type: http
+  seq: 5
+  tags:
+    - Calls
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/calls/:call-id/participants/invite"
+  params:
+    - name: call-id
+      value: call-001
+      type: path
+      description: Unique identifier of the call.
+  body:
+    type: json
+    data: |-
+      {
+        "participants": [
+          {
+            "identity": {
+              "application": {
+                "id": "",
+                "displayName": ""
+              },
+              "device": {},
+              "user": {}
+            },
+            "replacesCallId": ""
+          }
+        ],
+        "clientContext": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/calls/:call-id/participants/invite"
+      method: POST
+      params:
+        - name: call-id
+          value: ""
+          type: path
+          description: Unique identifier of the call.
+      body:
+        type: json
+        data: |-
+          {
+            "participants": [
+              {
+                "identity": {
+                  "application": {
+                    "id": "",
+                    "displayName": ""
+                  },
+                  "device": {},
+                  "user": {}
+                },
+                "replacesCallId": ""
+              }
+            ],
+            "clientContext": ""
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "op-invite-001",
+            "status": "completed",
+            "clientContext": "ctx-001"
+          }

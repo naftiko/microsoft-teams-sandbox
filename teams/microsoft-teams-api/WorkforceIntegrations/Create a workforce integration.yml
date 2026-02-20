@@ -1,0 +1,70 @@
+info:
+  name: Create a workforce integration
+  type: http
+  seq: 2
+  tags:
+    - WorkforceIntegrations
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teamwork/workforceIntegrations"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "apiVersion": 0,
+        "isActive": false,
+        "encryption": {
+          "protocol": "sharedSecret",
+          "secret": ""
+        },
+        "url": "",
+        "supportedEntities": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teamwork/workforceIntegrations"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "apiVersion": 0,
+            "isActive": false,
+            "encryption": {
+              "protocol": "sharedSecret",
+              "secret": ""
+            },
+            "url": "",
+            "supportedEntities": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "wfi-001",
+            "displayName": "Kronos Integration",
+            "apiVersion": 1,
+            "isActive": true,
+            "url": "https://kronos.example.com/api/v1/teams",
+            "supportedEntities": "shift,timeCard,timeOff"
+          }

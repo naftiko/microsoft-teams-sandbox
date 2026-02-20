@@ -1,0 +1,113 @@
+info:
+  name: Create an online meeting
+  type: http
+  seq: 2
+  tags:
+    - OnlineMeetings
+
+http:
+  method: POST
+  url: "{{baseUrl}}/me/onlineMeetings"
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "subject": "",
+        "startDateTime": "",
+        "endDateTime": "",
+        "joinWebUrl": "",
+        "joinUrl": "",
+        "videoTeleconferenceId": "",
+        "externalId": "",
+        "isEntryExitAnnounced": false,
+        "allowedPresenters": "everyone",
+        "lobbyBypassSettings": {
+          "scope": "organizer",
+          "isDialInBypassEnabled": false
+        },
+        "participants": {
+          "organizer": {
+            "identity": {
+              "application": {
+                "id": "",
+                "displayName": ""
+              },
+              "device": {},
+              "user": {}
+            },
+            "role": "attendee",
+            "upn": ""
+          },
+          "attendees": [
+            {}
+          ]
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/me/onlineMeetings"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "subject": "",
+            "startDateTime": "",
+            "endDateTime": "",
+            "joinWebUrl": "",
+            "joinUrl": "",
+            "videoTeleconferenceId": "",
+            "externalId": "",
+            "isEntryExitAnnounced": false,
+            "allowedPresenters": "everyone",
+            "lobbyBypassSettings": {
+              "scope": "organizer",
+              "isDialInBypassEnabled": false
+            },
+            "participants": {
+              "organizer": {
+                "identity": {
+                  "application": {
+                    "id": "",
+                    "displayName": ""
+                  },
+                  "device": {},
+                  "user": {}
+                },
+                "role": "attendee",
+                "upn": ""
+              },
+              "attendees": [
+                {}
+              ]
+            }
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "meeting-001",
+            "subject": "Sprint Planning",
+            "startDateTime": "2025-01-22T09:00:00Z",
+            "endDateTime": "2025-01-22T10:00:00Z",
+            "joinWebUrl": "https://teams.microsoft.com/l/meetup-join/19%3Ameeting_abc123",
+            "allowedPresenters": "organization",
+            "isEntryExitAnnounced": true
+          }

@@ -1,0 +1,40 @@
+info:
+  name: Delete a workforce integration
+  type: http
+  seq: 5
+  tags:
+    - WorkforceIntegrations
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/teamwork/workforceIntegrations/:workforceIntegration-id"
+  params:
+    - name: workforceIntegration-id
+      value: "123"
+      type: path
+      description: Unique identifier of the workforce integration.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully deleted.
+    request:
+      url: "{{baseUrl}}/teamwork/workforceIntegrations/:workforceIntegration-id"
+      method: DELETE
+      params:
+        - name: workforceIntegration-id
+          value: ""
+          type: path
+          description: Unique identifier of the workforce integration.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

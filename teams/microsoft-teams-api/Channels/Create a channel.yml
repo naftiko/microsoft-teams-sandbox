@@ -1,0 +1,74 @@
+info:
+  name: Create a channel
+  type: http
+  seq: 2
+  tags:
+    - Channels
+
+http:
+  method: POST
+  url: "{{baseUrl}}/teams/:team-id/channels"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "description": "",
+        "membershipType": "standard",
+        "email": "",
+        "webUrl": "",
+        "createdDateTime": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels"
+      method: POST
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "description": "",
+            "membershipType": "standard",
+            "email": "",
+            "webUrl": "",
+            "createdDateTime": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "19:channel123@thread.tacv2",
+            "displayName": "General",
+            "description": "General discussion channel",
+            "membershipType": "standard",
+            "createdDateTime": "2025-01-15T10:30:00Z",
+            "webUrl": "https://teams.microsoft.com/l/channel/19%3Achannel123%40thread.tacv2/General"
+          }

@@ -1,0 +1,62 @@
+info:
+  name: Get a time off entry
+  type: http
+  seq: 3
+  tags:
+    - TimeOff
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/schedule/timesOff/:timeOff-id"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: timeOff-id
+      value: "123"
+      type: path
+      description: Unique identifier of the time off entry.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/schedule/timesOff/:timeOff-id"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: timeOff-id
+          value: ""
+          type: path
+          description: Unique identifier of the time off entry.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "timeoff-001",
+            "userId": "user-001",
+            "createdDateTime": "2025-01-10T10:00:00Z",
+            "lastModifiedDateTime": "2025-01-10T10:00:00Z",
+            "sharedTimeOff": {
+              "timeOffReasonId": "reason-001",
+              "startDateTime": "2025-02-01T00:00:00Z",
+              "endDateTime": "2025-02-03T00:00:00Z",
+              "theme": "pink"
+            }
+          }

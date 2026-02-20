@@ -1,0 +1,82 @@
+info:
+  name: List learning content from a provider
+  type: http
+  seq: 6
+  tags:
+    - EmployeeLearning
+
+http:
+  method: GET
+  url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id/learningContents"
+  params:
+    - name: learningProvider-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning provider.
+    - name: $top
+      value: ""
+      type: query
+      description: Number of items to return.
+      disabled: true
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id/learningContents"
+      method: GET
+      params:
+        - name: learningProvider-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning provider.
+        - name: $top
+          value: ""
+          type: query
+          description: Number of items to return.
+          disabled: true
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "content-001",
+                "externalId": "course-python-101",
+                "title": "Introduction to Python",
+                "description": "Learn the basics of Python programming",
+                "level": "Beginner",
+                "isActive": true
+              },
+              {
+                "id": "content-002",
+                "externalId": "course-cloud-201",
+                "title": "Cloud Architecture Fundamentals",
+                "description": "Design scalable cloud solutions",
+                "level": "Intermediate",
+                "isActive": true
+              }
+            ]
+          }

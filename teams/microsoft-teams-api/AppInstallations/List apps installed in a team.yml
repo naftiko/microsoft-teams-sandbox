@@ -1,0 +1,60 @@
+info:
+  name: List apps installed in a team
+  type: http
+  seq: 1
+  tags:
+    - AppInstallations
+
+http:
+  method: GET
+  url: "{{baseUrl}}/teams/:team-id/installedApps"
+  params:
+    - name: team-id
+      value: install-001
+      type: path
+      description: Unique identifier of the team.
+    - name: $expand
+      value: ""
+      type: query
+      description: Comma-separated list of relationships to expand.
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/teams/:team-id/installedApps"
+      method: GET
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: $expand
+          value: ""
+          type: query
+          description: Comma-separated list of relationships to expand.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "install-001",
+                "teamsApp@odata.bind": "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/app-id-001"
+              }
+            ]
+          }

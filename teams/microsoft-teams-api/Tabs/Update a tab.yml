@@ -1,0 +1,86 @@
+info:
+  name: Update a tab
+  type: http
+  seq: 4
+  tags:
+    - Tabs
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/tabs/:tab-id"
+  params:
+    - name: team-id
+      value: "team-001"
+      type: path
+      description: Unique identifier of the team.
+    - name: channel-id
+      value: "channel-001"
+      type: path
+      description: Unique identifier of the channel.
+    - name: tab-id
+      value: "123"
+      type: path
+      description: Unique identifier of the tab.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "displayName": "",
+        "webUrl": "",
+        "configuration": {
+          "entityId": "",
+          "contentUrl": "",
+          "removeUrl": "",
+          "websiteUrl": ""
+        },
+        "teamsApp@odata.bind": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Successfully updated.
+    request:
+      url: "{{baseUrl}}/teams/:team-id/channels/:channel-id/tabs/:tab-id"
+      method: PATCH
+      params:
+        - name: team-id
+          value: ""
+          type: path
+          description: Unique identifier of the team.
+        - name: channel-id
+          value: ""
+          type: path
+          description: Unique identifier of the channel.
+        - name: tab-id
+          value: ""
+          type: path
+          description: Unique identifier of the tab.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "displayName": "",
+            "webUrl": "",
+            "configuration": {
+              "entityId": "",
+              "contentUrl": "",
+              "removeUrl": "",
+              "websiteUrl": ""
+            },
+            "teamsApp@odata.bind": ""
+          }
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""

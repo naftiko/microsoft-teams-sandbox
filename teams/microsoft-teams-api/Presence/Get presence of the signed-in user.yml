@@ -1,0 +1,37 @@
+info:
+  name: Get presence of the signed-in user
+  type: http
+  seq: 1
+  tags:
+    - Presence
+
+http:
+  method: GET
+  url: "{{baseUrl}}/me/presence"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/me/presence"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "user-001",
+            "availability": "Available",
+            "activity": "Available"
+          }

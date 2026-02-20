@@ -1,0 +1,38 @@
+info:
+  name: Publish an app to the Teams app catalog
+  type: http
+  seq: 2
+  tags:
+    - Apps
+
+http:
+  method: POST
+  url: "{{baseUrl}}/appCatalogs/teamsApps"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/appCatalogs/teamsApps"
+      method: POST
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "app-id-001",
+            "externalId": "com.example.myapp",
+            "displayName": "My Custom App",
+            "distributionMethod": "organization"
+          }

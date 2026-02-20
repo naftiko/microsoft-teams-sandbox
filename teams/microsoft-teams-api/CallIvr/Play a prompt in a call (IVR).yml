@@ -1,0 +1,77 @@
+info:
+  name: Play a prompt in a call (IVR)
+  type: http
+  seq: 1
+  tags:
+    - CallIvr
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communications/calls/:call-id/playPrompt"
+  params:
+    - name: call-id
+      value: call-001
+      type: path
+      description: Unique identifier of the call.
+  body:
+    type: json
+    data: |-
+      {
+        "prompts": [
+          {
+            "@odata.type": "#microsoft.graph.mediaPrompt",
+            "mediaInfo": {
+              "uri": "",
+              "resourceId": ""
+            }
+          }
+        ],
+        "clientContext": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/communications/calls/:call-id/playPrompt"
+      method: POST
+      params:
+        - name: call-id
+          value: ""
+          type: path
+          description: Unique identifier of the call.
+      body:
+        type: json
+        data: |-
+          {
+            "prompts": [
+              {
+                "@odata.type": "#microsoft.graph.mediaPrompt",
+                "mediaInfo": {
+                  "uri": "",
+                  "resourceId": ""
+                }
+              }
+            ],
+            "clientContext": ""
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "op-prompt-001",
+            "status": "completed",
+            "clientContext": "ctx-002"
+          }

@@ -1,0 +1,109 @@
+info:
+  name: Update learning content
+  type: http
+  seq: 9
+  tags:
+    - EmployeeLearning
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id/learningContents/:learningContent-id"
+  params:
+    - name: learningProvider-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning provider.
+    - name: learningContent-id
+      value: "123"
+      type: path
+      description: Unique identifier of the learning content.
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "externalId": "",
+        "title": "",
+        "description": "",
+        "contentWebUrl": "",
+        "thumbnailWebUrl": "",
+        "languageTag": "",
+        "numberOfPages": 0,
+        "duration": "",
+        "format": "",
+        "level": "Beginner",
+        "createdDateTime": "",
+        "lastModifiedDateTime": "",
+        "contributors": [],
+        "additionalTags": [],
+        "isActive": false,
+        "isPremium": false,
+        "isSearchable": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Successful response
+    request:
+      url: "{{baseUrl}}/employeeExperience/learningProviders/:learningProvider-id/learningContents/:learningContent-id"
+      method: PATCH
+      params:
+        - name: learningProvider-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning provider.
+        - name: learningContent-id
+          value: ""
+          type: path
+          description: Unique identifier of the learning content.
+      body:
+        type: json
+        data: |-
+          {
+            "id": "",
+            "externalId": "",
+            "title": "",
+            "description": "",
+            "contentWebUrl": "",
+            "thumbnailWebUrl": "",
+            "languageTag": "",
+            "numberOfPages": 0,
+            "duration": "",
+            "format": "",
+            "level": "Beginner",
+            "createdDateTime": "",
+            "lastModifiedDateTime": "",
+            "contributors": [],
+            "additionalTags": [],
+            "isActive": false,
+            "isPremium": false,
+            "isSearchable": false
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "content-001",
+            "externalId": "course-python-101",
+            "title": "Introduction to Python",
+            "description": "Learn the basics of Python programming",
+            "contentWebUrl": "https://learning.example.com/courses/python-101",
+            "languageTag": "en-US",
+            "duration": "PT2H30M",
+            "format": "video",
+            "level": "Beginner",
+            "isActive": true,
+            "isSearchable": true
+          }
