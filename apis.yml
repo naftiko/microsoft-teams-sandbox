@@ -15,7 +15,7 @@ tags:
   - Microsoft
   - Office
 
-image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
 
 created: '2026-02-19'
 modified: '2026-02-19'
@@ -28,6 +28,9 @@ apis:
       name: Microsooft Teams API
       description: >-
         Working with Microsoft Teams via the Microsoft Graph API, providing a sandbox for working with specific messages and conversations.
+      humanURL: https://github.com/naftiko/microsoft-teams-sandbox
+      baseURL: http://localhost:8080/rest/microsoft-teams-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Meetings
         - Chats
@@ -48,6 +51,297 @@ apis:
 
 common:
 
+  - type: AgentSkill
+    url: skills/list-teams/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-team/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-team/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-team/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-team/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-groups/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-group/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-group/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-group/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-group/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-channels/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-channel/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-channel/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-channel/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-channel/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-tabs/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-tab/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-tab/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-tab/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-tab/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-apps/SKILL.md
+
+  - type: AgentSkill
+    url: skills/publish-app/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-app/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-app/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-team-installed-apps/SKILL.md
+
+  - type: AgentSkill
+    url: skills/install-app-to-team/SKILL.md
+
+  - type: AgentSkill
+    url: skills/uninstall-app-from-team/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-chats/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-chat/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-chat/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-chat/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-chat-messages/SKILL.md
+
+  - type: AgentSkill
+    url: skills/send-chat-message/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-channel-messages/SKILL.md
+
+  - type: AgentSkill
+    url: skills/send-channel-message/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-message-replies/SKILL.md
+
+  - type: AgentSkill
+    url: skills/reply-to-channel-message/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-teamwork-tags/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-teamwork-tag/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-teamwork-tag/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-teamwork-tag/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-teamwork-tag/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-teamwork-tag-members/SKILL.md
+
+  - type: AgentSkill
+    url: skills/add-teamwork-tag-member/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-call/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-call/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-call/SKILL.md
+
+  - type: AgentSkill
+    url: skills/answer-call/SKILL.md
+
+  - type: AgentSkill
+    url: skills/invite-participants/SKILL.md
+
+  - type: AgentSkill
+    url: skills/play-prompt/SKILL.md
+
+  - type: AgentSkill
+    url: skills/record-response/SKILL.md
+
+  - type: AgentSkill
+    url: skills/transfer-call/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-call-records/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-call-record/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-call-record-sessions/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-online-meetings/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-online-meeting/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-online-meeting/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-online-meeting/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-online-meeting/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-meeting-attendance-report/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-my-presence/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-user-presence/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-presences-by-user-id/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-workforce-integrations/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-workforce-integration/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-workforce-integration/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-workforce-integration/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-workforce-integration/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-schedule/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-or-replace-schedule/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-shifts/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-shift/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-shift/SKILL.md
+
+  - type: AgentSkill
+    url: skills/replace-shift/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-shift/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-times-off/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-time-off/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-time-off/SKILL.md
+
+  - type: AgentSkill
+    url: skills/replace-time-off/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-time-off/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-time-off-reasons/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-time-off-reason/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-time-cards/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-time-card/SKILL.md
+
+  - type: AgentSkill
+    url: skills/clock-in/SKILL.md
+
+  - type: AgentSkill
+    url: skills/clock-out/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-learning-providers/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-learning-provider/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-learning-provider/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-learning-provider/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-learning-provider/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-learning-contents/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-learning-content/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-learning-content/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-learning-content/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-learning-content/SKILL.md
+
   - type: GitHubHttpUrl
     url: https://github.com/naftiko/microsoft-teams-sandbox
 
@@ -61,6 +355,7 @@ common:
     url: https://github.com/orgs/naftiko/discussions
 
   - type: Standards
+    url: https://github.com/naftiko/microsoft-teams-sandbox
     data:
 
       - name: APIs.json
@@ -88,6 +383,7 @@ common:
         docUrl: https://docs.usebruno.com/secrets-management/overview
 
   - type: Services
+    url: https://github.com/naftiko/microsoft-teams-sandbox
     data:
 
       - aid: microsoft-graph
