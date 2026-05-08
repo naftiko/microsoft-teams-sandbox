@@ -1,0 +1,80 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Microsoft Teams Sandbox"
+  description: "Naftiko Sandbox — wraps the Microsoft Teams API mocks hosted at mocks.naftiko.net. Exposes MCP, REST, and Skill adapters for AI agents and downstream tools."
+  tags:
+    - "Microsoft Teams"
+    - "Naftiko Sandbox"
+    - MCP
+    - Mocks
+
+binds:
+  - namespace: "sandbox-env"
+    description: "Sandbox bearer token for the Naftiko Framework MCP server."
+    location: "file:///./shared/secrets.yaml"
+    keys:
+      MCP_SERVER_TOKEN: "mcp-server-token"
+
+capability:
+  consumes:
+    - import: microsoft-teams-api
+      location: ./shared/microsoft-teams-api-consumes.yml
+
+  exposes:
+    - type: mcp
+      address: "0.0.0.0"
+      port: 3001
+      namespace: microsoft-teams-sandbox-tools
+      authentication:
+        type: bearer
+        token: "{{MCP_SERVER_TOKEN}}"
+      description: "Microsoft Teams MCP tools — backed by mocks.naftiko.net"
+      tools:
+        - name: get-app
+          description: "Get an app from the catalog"
+          call: microsoft-teams-api.get-app
+        - name: get-call
+          description: "Get a call"
+          call: microsoft-teams-api.get-call
+        - name: get-call-record
+          description: "Get a call record"
+          call: microsoft-teams-api.get-call-record
+
+    - type: rest
+      address: "0.0.0.0"
+      port: 3002
+      namespace: microsoft-teams-sandbox-api
+      description: "Microsoft Teams REST adapter — exposes the same domain as REST resources."
+      resources:
+        - name: get-app
+          path: "/get-app"
+          operations:
+            - method: GET
+              call: microsoft-teams-api.get-app
+        - name: get-call
+          path: "/get-call"
+          operations:
+            - method: GET
+              call: microsoft-teams-api.get-call
+        - name: get-call-record
+          path: "/get-call-record"
+          operations:
+            - method: GET
+              call: microsoft-teams-api.get-call-record
+
+    - type: skill
+      address: "0.0.0.0"
+      port: 3003
+      namespace: microsoft-teams-sandbox-skills
+      description: "Microsoft Teams skill server for structured agent discovery."
+      groups:
+        - name: read-microsoft-teams
+          description: "Read-only Microsoft Teams operations."
+          skills:
+            - name: get-app
+              call: microsoft-teams-api.get-app
+            - name: get-call
+              call: microsoft-teams-api.get-call
+            - name: get-call-record
+              call: microsoft-teams-api.get-call-record

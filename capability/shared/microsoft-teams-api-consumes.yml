@@ -1,0 +1,21 @@
+naftiko: "1.0.0-alpha2"
+consumes:
+  - namespace: microsoft-teams-api
+    type: http
+    baseUri: "https://mocks.naftiko.net/rest/microsoft-teams-api/1.0.0"
+    resources:
+      - name: get-app
+        path: "/appCatalogs/teamsApps/{{app-id}}"
+        operations:
+          - name: get-app
+            method: GET
+      - name: get-call
+        path: "/communications/calls/{{call-id}}"
+        operations:
+          - name: get-call
+            method: GET
+      - name: get-call-record
+        path: "/communications/callRecords/{{callRecord-id}}"
+        operations:
+          - name: get-call-record
+            method: GET
